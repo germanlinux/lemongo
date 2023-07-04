@@ -13,6 +13,7 @@ func main() {
 	fmt.Println("tranche_a", tranche_a, "capacité:", cap(tranche_a), "taille:", len(tranche_a))
 	fmt.Println("tranche_b", tranche_b, "capacité:", cap(tranche_b), "taille:", len(tranche_b))
 	lettres := []string{"etoile", "des", "neiges"}
+	fmt.Printf("Adresse de la variable lettre: %p\n", &lettres)
 	fmt.Println("lettres", lettres, "capacité:", cap(lettres), "taille:", len(lettres))
 	sub1 := lettres[:2]
 	sub2 := sub1[:]
@@ -24,5 +25,20 @@ func main() {
 	fmt.Println("lettres", lettres, "capacité:", cap(lettres), "taille:", len(lettres))
 	fmt.Println("sub1", sub1, "capacité:", cap(sub1), "taille:", len(sub1))
 	fmt.Println("sub2", sub2, "capacité:", cap(sub2), "taille:", len(sub2))
+	lettres = append(lettres, "pourquoi")
+	lettres = append(lettres, "encore")
 
+	fmt.Printf("Adresse de la variable lettre: %p\n", &lettres)
+	fmt.Println("lettres", lettres, "capacité:", cap(lettres), "taille:", len(lettres))
+	sub3 := lettres[0:2]
+	fmt.Println("sub3", sub3, "capacité:", cap(sub3), "taille:", len(sub3))
+	sub4 := sub3[:]
+	sub4 = append(sub4, "toujours")
+	fmt.Println("sub4", sub4, "capacité:", cap(sub4), "taille:", len(sub4))
+	sub4[2] = "plus_toujours"
+	fmt.Println("sub4", sub4, "capacité:", cap(sub4), "taille:", len(sub4))
+	sub4[0] = "python"
+	fmt.Println("sub4", sub4, "capacité:", cap(sub4), "taille:", len(sub4))
+	fmt.Println("sub3", sub3, "capacité:", cap(sub3), "taille:", len(sub3))
+	fmt.Println("lettres", lettres, "capacité:", cap(lettres), "taille:", len(lettres))
 }
