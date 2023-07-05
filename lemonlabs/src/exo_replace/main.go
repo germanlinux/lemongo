@@ -16,17 +16,24 @@ func ProcessLine(line, old, new string) (found bool, res string, occ int) {
 	return true, nwligne, compteur
 }
 
-func FindRemplaceFile(src, old, new string) (occ int, line []int, err error) {
+func FindRemplaceFile(src, dst, old, new string) (occ int, line []int, err error) {
 	fmt.Println("ligne entree", line)
 	compteur := 0
 	file, err := os.Open(src)
 	defer file.Close()
+	dfile, err2 := os.Create(dst)
+	defer dfile.Close()
+	if err2 != nil {
+		return occ, line, err2
+	}
 	//handle errors while opening
 	if err != nil {
-		fmt.Printf("Error when opening file: %s", err)
+		return occ, line, err
 	}
 
 	fileScanner := bufio.NewScanner(file)
+	writer := bufio.NewWriter(dfile)
+	defer writer.Flush()
 
 	// read line by line
 	cpligne := 0
@@ -36,9 +43,9 @@ func FindRemplaceFile(src, old, new string) (occ int, line []int, err error) {
 		if rep {
 			compteur += occ
 			line = append(line, cpligne)
-			fmt.Println(chaine)
-
 		}
+		chaine += "\n"
+		fmt.Fprint(writer, chaine)
 	}
 	// handle first encountered error while reading
 	if err := fileScanner.Err(); err != nil {
@@ -47,7 +54,7 @@ func FindRemplaceFile(src, old, new string) (occ int, line []int, err error) {
 	return compteur, line, err
 }
 func main() {
-	nbocc, numligne, erreur := FindRemplaceFile("wikigo.txt", "Go", "Python")
+	nbocc, numligne, erreur := FindRemplaceFile("wikigo.txt", "python.txt", "Go", "Python")
 	if erreur != nil {
 		fmt.Println("erreur generale")
 	}
