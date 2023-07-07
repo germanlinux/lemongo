@@ -8,8 +8,9 @@ import (
 )
 
 func ProcessLine(line, old, new string) (found bool, res string, occ int) {
+	//fmt.Println(line)
 	if !strings.Contains(line, "Go") {
-		return false, "", 0
+		return false, line, 0
 	}
 	compteur := strings.Count(line, "Go")
 	nwligne := strings.ReplaceAll(line, "Go", "Python")
@@ -30,6 +31,13 @@ func FindRemplaceFile(src, dst, old, new string) (occ int, line []int, err error
 	if err != nil {
 		return occ, line, err
 	}
+
+	/*
+		scanner.Split(bufio.ScanLines)
+			for scanner.Scan() {
+				fmt.Println(scanner.Text())
+			}
+		}*/
 
 	fileScanner := bufio.NewScanner(file)
 	writer := bufio.NewWriter(dfile)
