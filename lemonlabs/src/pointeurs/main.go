@@ -7,8 +7,8 @@ type Personne struct {
 	Prenom string
 }
 
-func New_personne(nom string) Personne {
-	return Personne{}
+func New_personne(nom string) *Personne {
+	return &Personne{Nom: nom}
 }
 
 func (p *Personne) Affiche() string {
@@ -34,4 +34,7 @@ func main() {
 	var per3 Personne = Personne{"Dupond", "emile"}
 	fmt.Printf("per3:%v \n", per3)
 	fmt.Println(per2.Affiche())
+	var per4 = New_personne("Robin")
+	fmt.Printf("per4:%v \n", *per4)
+
 }
