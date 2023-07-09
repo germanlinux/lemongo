@@ -36,5 +36,11 @@ func main() {
 	fmt.Println(per2.Affiche())
 	var per4 = New_personne("Robin")
 	fmt.Printf("per4:%v \n", *per4)
+	type S0 = struct {
+		N1 int 1
+		Y  bool
+	}
+	var monstr S0
+	fmt.Printf("monstr:%v\n", monstr)
 
 }
