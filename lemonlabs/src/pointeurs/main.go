@@ -37,10 +37,22 @@ func main() {
 	var per4 = New_personne("Robin")
 	fmt.Printf("per4:%v \n", *per4)
 	type S0 = struct {
-		N1 int 1
+		N1 int `essai`
 		Y  bool
 	}
 	var monstr S0
 	fmt.Printf("monstr:%v\n", monstr)
-
+	fmt.Println("---------------------------------")
+	mymap := make(map[string]int)
+	mymap["un"] = 1
+	mymap["deux"] = 2
+	mymap["quatre"] = 4
+	mymap["six"] = 6
+	fmt.Println(mymap)
+	for cle := range mymap {
+		if cle == "deux" {
+			delete(mymap, cle)
+		}
+	}
+	fmt.Println(mymap)
 }
