@@ -1,8 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"strings"
+)
 
 func main() {
+	r := strings.NewReader("bonjour suite")
+	d, err := ioutil.ReadAll(r)
+	if err != nil {
+		fmt.Println(("erreur"))
+		return
+	}
+	fmt.Println("eric", string(d))
+
 	tranche_a := make([]int, 2, 3)
 	tranche_a[0] = 3
 	tranche_a[1] = 2

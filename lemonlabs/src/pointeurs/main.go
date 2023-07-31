@@ -54,5 +54,6 @@ func main() {
 			delete(mymap, cle)
 		}
 	}
-	fmt.Println(mymap)
+	// err := delete(mymap, "deux")
+	// fmt.Println(mymap, err)
 }
