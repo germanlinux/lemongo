@@ -13,8 +13,8 @@ func main() {
 	n1 := d1.Lance()
 	fmt.Printf("face :%v", n1)
 	d2 := libde.DePipe{
-		Nbface:   6,
-		Faceplus: 6,
+		libde.De{5},
+		6,
 	}
 	fmt.Printf("%v , %T\n", d2, d2)
 
