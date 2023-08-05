@@ -5,17 +5,22 @@ import (
 	"lemonlabs/src/de/libde"
 )
 
+type De = libde.De
+type DePipe = libde.DePipe
+
 func main() {
 
-	d1 := libde.De{6}
+	d1 := De{6}
 	fmt.Printf("%v , %T\n", d1, d1)
 	fmt.Printf("nb de face :%v\n", d1.GetFace())
 	n1 := d1.Lance()
 	fmt.Printf("face :%v", n1)
-	d2 := libde.DePipe{
-		libde.De{5},
+	d2 := DePipe{
+		De{5},
 		6,
 	}
 	fmt.Printf("%v , %T\n", d2, d2)
+	n2 := d2.Lance()
+	fmt.Printf("face :%v", n2)
 
 }

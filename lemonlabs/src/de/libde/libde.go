@@ -23,6 +23,9 @@ func (d DePipe) GetFace() int {
 	return d.De.Nbface
 }
 func (d DePipe) Lance() int {
-	n := rand.Intn(d.De.Nbface-1) + 1
+	n := rand.Intn(d.De.Nbface) + 1
+	if n == d.Faceplus {
+		n = d.Faceplus
+	}
 	return n
 }
