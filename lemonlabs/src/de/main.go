@@ -22,5 +22,10 @@ func main() {
 	fmt.Printf("%v , %T\n", d2, d2)
 	n2 := d2.Lance()
 	fmt.Printf("face :%v", n2)
+	// 100 tirages
+	var tirages1 [100]int
+	for i := 0; i < 100; i++ {
+		tirages1[i] = d1.Lance()
+	}
 
 }
