@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"lemonlabs/src/de/libde"
+	"sort"
 )
 
 type De = libde.De
@@ -31,6 +32,8 @@ func main() {
 	for face, score := range tirages1 {
 		fmt.Println("face:", face, "score:", score)
 	}
+
+	fmt.Println("-------------------------------------")
 	fmt.Printf("face plus: %v\n", d2.Faceplus)
 	tirages2 := make(map[int]int)
 	for i := 0; i < 1000; i++ {
@@ -38,7 +41,28 @@ func main() {
 		tirages2[z] += 1
 	}
 	fmt.Println("-------------------------------------")
+	var pourcent float64
+
 	for face, score := range tirages2 {
-		fmt.Println("face:", face, "score:", score)
+		pourcent = float64(score)
+		pourcent = pourcent / 10
+		s := fmt.Sprintf("%.2f", pourcent)
+		fmt.Println("face:", face, "score:", s)
+	}
+	fmt.Println("Tri par face")
+	tface := make([]int, 0)
+	for key := range tirages2 {
+		tface = append(tface, key)
+	}
+	fmt.Println(tface)
+	sort.Ints(tface)
+	fmt.Println(tface)
+	fmt.Println("-----------tri sur la face --------------------------")
+	for _, key := range tface {
+
+		pourcent = float64(tirages2[key])
+		pourcent = pourcent / 10
+		s := fmt.Sprintf("%.2f", pourcent)
+		fmt.Println("face:", key, "score:", s)
 	}
 }
