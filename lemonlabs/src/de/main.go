@@ -74,4 +74,14 @@ func main() {
 		s := fmt.Sprintf("%.2f", pourcent)
 		fmt.Println("face:", key, "score:", s)
 	}
+	fmt.Println("-----------tri sur la face ordre inverse --------------------------")
+	sort.SliceStable(tface, func(i, j int) bool { return tirages2[tface[i]] >= tirages2[tface[j]] })
+	fmt.Println("par valeur", tface)
+	for _, key := range tface {
+		pourcent = float64(tirages2[key])
+		pourcent = pourcent / 10
+		s := fmt.Sprintf("%.2f", pourcent)
+		fmt.Println("face:", key, "score:", s)
+	}
+
 }
