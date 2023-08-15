@@ -15,7 +15,7 @@ func main() {
 	fmt.Printf("%v , %T\n", d1, d1)
 	fmt.Printf("nb de face :%v\n", d1.GetFace())
 	n1 := d1.Lance()
-	fmt.Printf("face :%v", n1)
+	fmt.Printf("face :%v\n", n1)
 	d2 := DePipe{
 		De{6},
 		6,
@@ -83,5 +83,6 @@ func main() {
 		s := fmt.Sprintf("%.2f", pourcent)
 		fmt.Println("face:", key, "score:", s)
 	}
-
+	d2p := &d2
+	fmt.Println("pointeur", d2p.Lance())
 }
