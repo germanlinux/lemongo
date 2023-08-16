@@ -85,4 +85,15 @@ func main() {
 	}
 	d2p := &d2
 	fmt.Println("pointeur", d2p.Lance())
+	// appel de fonction par adresse ou par pointeur
+	var d3 De
+	d3 = De{12}
+	fmt.Println("par valeur:", d3.GetFaceValeur())
+	var dp *De
+	dp = &d3
+	fmt.Println("par pointeur:", dp.GetFacePointeur())
+	// 2 formes possibles
+	fmt.Println("recepteur pointeur:", d3.GetFacePointeur())
+	fmt.Println("recepteur valeur:", dp.GetFaceValeur())
+
 }
