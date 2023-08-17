@@ -1,6 +1,7 @@
 package libde
 
 import (
+	"fmt"
 	"math/rand"
 )
 
@@ -32,6 +33,19 @@ func (d *De) GetFacePointeur() int {
 func (d DePipe) GetFace() int {
 	return d.De.Nbface
 }
+
+func (d DePipe) SetFaceValeur(face int) DePipe {
+	d.Faceplus = face
+	fmt.Println("par valeur", d)
+	return d
+}
+func (d *DePipe) SetFacePointeur(face int) *DePipe {
+
+	d.Faceplus = face
+	fmt.Println("par pointeur", *d)
+	return d
+}
+
 func (d DePipe) Lance() int {
 	n := rand.Intn(d.De.Nbface+1) + 1
 	if n == d.De.Nbface+1 {

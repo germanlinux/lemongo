@@ -95,5 +95,18 @@ func main() {
 	// 2 formes possibles
 	fmt.Println("recepteur pointeur:", d3.GetFacePointeur())
 	fmt.Println("recepteur valeur:", dp.GetFaceValeur())
+	// methode setter
+	d4 := DePipe{
+		De{6},
+		5,
+	}
+	fmt.Println("avant appel", d4)
+	d4.SetFaceValeur(2)
+	fmt.Println("apres appel", d4)
+	tmp := &d4
+	tmp.SetFacePointeur(3)
+	fmt.Println("apres appel", d4)
+	(&d4).SetFacePointeur(6)
+	fmt.Println("apres appel", d4)
 
 }
