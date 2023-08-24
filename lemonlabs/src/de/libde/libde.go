@@ -45,6 +45,12 @@ func (d *DePipe) SetFacePointeur(face int) *DePipe {
 	fmt.Println("par pointeur", *d)
 	return d
 }
+func (d *DePipe) SetFaceDEPointeur(face int) *DePipe {
+
+	d.Nbface = face
+	fmt.Println("par pointeur", *d)
+	return d
+}
 
 func (d DePipe) Lance() int {
 	n := rand.Intn(d.De.Nbface+1) + 1

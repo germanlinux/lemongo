@@ -13,7 +13,11 @@ func main() {
 
 	d1 := De{6}
 	fmt.Printf("%v , %T\n", d1, d1)
-	fmt.Printf("nb de face :%v\n", d1.GetFace())
+	fmt.Printf("nb de face (adresse):%v\n", d1.GetFace())
+	fmt.Printf("nb de face (pointeur):%v\n", (&d1).GetFace())
+	d1p := &d1
+	fmt.Printf("nb de face (pointeur V2):%v\n", d1p.GetFace())
+
 	n1 := d1.Lance()
 	fmt.Printf("face :%v\n", n1)
 	d2 := DePipe{
@@ -107,6 +111,10 @@ func main() {
 	tmp.SetFacePointeur(3)
 	fmt.Println("apres appel", d4)
 	(&d4).SetFacePointeur(6)
+	fmt.Println("apres appel", d4)
+	d4.SetFacePointeur(1)
+	fmt.Println("apres appel", d4)
+	d4.SetFaceDEPointeur(10)
 	fmt.Println("apres appel", d4)
 
 }
