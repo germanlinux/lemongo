@@ -116,5 +116,7 @@ func main() {
 	fmt.Println("apres appel", d4)
 	d4.SetFaceDEPointeur(10)
 	fmt.Println("apres appel", d4)
+	fmt.Println("complet", d4.De.Nbface)
+	fmt.Println("direct", d4.Nbface)
 
 }
