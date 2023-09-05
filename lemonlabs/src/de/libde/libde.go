@@ -11,6 +11,10 @@ type DePipe struct {
 	De
 	Faceplus int
 }
+type DePipe2 struct {
+	*De
+	Faceplus int
+}
 
 // GetFace: cette fonction/methode retourne le nombre de face du dé.
 func (d De) GetFace() int {

@@ -8,6 +8,7 @@ import (
 
 type De = libde.De
 type DePipe = libde.DePipe
+type DePipe2 = libde.DePipe2
 
 func main() {
 
@@ -118,5 +119,12 @@ func main() {
 	fmt.Println("apres appel", d4)
 	fmt.Println("complet", d4.De.Nbface)
 	fmt.Println("direct", d4.Nbface)
+	fmt.Println("essai pointeur stryc imbriquée")
+	d2spe := DePipe2{
+		&De{6},
+		6,
+	}
+	fmt.Printf("ok : %v", d2spe)
+	fmt.Printf("face %v", d2spe.De.Nbface)
 
 }
