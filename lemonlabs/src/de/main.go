@@ -124,7 +124,14 @@ func main() {
 		&De{6},
 		6,
 	}
-	fmt.Printf("ok : %v", d2spe)
-	fmt.Printf("face %v", d2spe.De.Nbface)
+	fmt.Printf("ok : %v\n", d2spe)
+	fmt.Printf("face %v\n", d2spe.De.Nbface)
+
+	a := []int{3, 6, 4, 1}
+	fmt.Println("avant", a)
+	sort.Ints(a)
+	fmt.Println("après", a)
+	g := []interface{}{3, 6, 'a', 4, 1}
+	fmt.Printf("g: %T, %v\n", g, g)
 
 }
