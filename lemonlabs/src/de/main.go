@@ -10,6 +10,8 @@ type De = libde.De
 type DePipe = libde.DePipe
 type DePipe2 = libde.DePipe2
 
+type Maliste []interface{}
+
 func main() {
 
 	d1 := De{6}
@@ -131,7 +133,9 @@ func main() {
 	fmt.Println("avant", a)
 	sort.Ints(a)
 	fmt.Println("après", a)
-	g := []interface{}{3, 6, 'a', 4, 1}
-	fmt.Printf("g: %T, %v\n", g, g)
+	g := Maliste{3, 6, 'a', 4, 1}
+	fmt.Printf("g avant tri: %T, %v\n", g, g)
+	//	sort.SliceStable(g, func(i, j int) bool { )
+	//	fmt.Printf("g après tri: %T, %v\n", g, g)
 
 }
