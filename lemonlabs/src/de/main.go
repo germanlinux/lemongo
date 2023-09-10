@@ -12,6 +12,13 @@ type DePipe2 = libde.DePipe2
 
 type Maliste []interface{}
 
+func (a Maliste) Len() int      { return len(a) }
+func (a Maliste) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
+func (a Myliste) Less(i, j int) bool {
+	si := fmt.Printf("%v", i)
+	sj := fmt.Printf("%v", j)
+	return si < sj
+}
 func main() {
 
 	d1 := De{6}
