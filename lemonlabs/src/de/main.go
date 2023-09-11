@@ -14,9 +14,16 @@ type Maliste []interface{}
 
 func (a Maliste) Len() int      { return len(a) }
 func (a Maliste) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
-func (a Myliste) Less(i, j int) bool {
-	si := fmt.Printf("%v", i)
-	sj := fmt.Printf("%v", j)
+func (a Maliste) Less(i, j int) bool {
+	si := fmt.Sprintf("%v", a[i])
+	sj := fmt.Sprintf("%v", a[j])
+	if _, ok := a[i].(int); ok {
+		si = fmt.Sprintf("|%v", a[i])
+	}
+	if _, ok := a[j].(int); ok {
+		sj = fmt.Sprintf("|%v", a[j])
+	}
+
 	return si < sj
 }
 func main() {
@@ -140,9 +147,11 @@ func main() {
 	fmt.Println("avant", a)
 	sort.Ints(a)
 	fmt.Println("après", a)
-	g := Maliste{3, 6, 'a', 4, 1}
+	g := Maliste{3, 6, "a", 4, 1}
 	fmt.Printf("g avant tri: %T, %v\n", g, g)
 	//	sort.SliceStable(g, func(i, j int) bool { )
 	//	fmt.Printf("g après tri: %T, %v\n", g, g)
+	sort.Sort(g)
+	fmt.Printf("g apres tri: %T, %v\n", g, g)
 
 }
