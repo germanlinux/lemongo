@@ -10,7 +10,7 @@ type De = libde.De
 type DePipe = libde.DePipe
 type DePipe2 = libde.DePipe2
 
-type Maliste []interface{}
+type Maliste []any
 
 func (a Maliste) Len() int      { return len(a) }
 func (a Maliste) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
@@ -153,5 +153,7 @@ func main() {
 	//	fmt.Printf("g après tri: %T, %v\n", g, g)
 	sort.Sort(g)
 	fmt.Printf("g apres tri: %T, %v\n", g, g)
+	sort.Sort(sort.Reverse(g))
+	fmt.Printf("g apres inversion tri: %T, %v\n", g, g)
 
 }
