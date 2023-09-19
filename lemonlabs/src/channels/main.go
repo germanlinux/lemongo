@@ -8,6 +8,7 @@ import (
 type monchanel chan int
 
 func pong(id int, channel chan int) {
+	fmt.Printf("Dans %v\n", id)
 	for j := range channel {
 		fmt.Printf("id: %v  recu: %v\n", id, j)
 		//time.Sleep(time.Duration(id) * time.Second)
@@ -15,16 +16,21 @@ func pong(id int, channel chan int) {
 	fmt.Printf("id: %v traitement terminé\n", id)
 }
 func main() {
-	c := make(monchanel)
-
-	go pong(1, c)
-	go pong(2, c)
-	go pong(3, c)
-	go pong(4, c)
-	for i := 0; i < 100; i++ {
-		c <- i
-		//time.Sleep(10 * time.Millisecond)
+	//c := make(monchanel)
+	for j := 1; j < 20; j++ {
+		go func(id int) { fmt.Println(id) }(j)
 	}
-	close(c)
-	time.Sleep(100 * time.Millisecond)
+	/*
+		for j := 1; j < 5; j++ {
+			z := j
+			go pong(z, c)
+		}
+		for i := 0; i < 100; i++ {
+			c <- i
+			//time.Sleep(10 * time.Millisecond)
+		}
+		close(c)
+		time.Sleep(100 * time.Millisecond)
+	*/
+	time.Sleep(1000 * time.Millisecond)
 }
