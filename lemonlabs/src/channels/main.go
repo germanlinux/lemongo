@@ -17,9 +17,19 @@ func pong(id int, channel chan int) {
 }
 func main() {
 	//c := make(monchanel)
-	for j := 1; j < 20; j++ {
-		go func(id int) { fmt.Println(id) }(j)
+	// Mauvaise manière
+	fmt.Println("pas bien")
+	for j := 1; j < 10; j++ {
+		go func() { fmt.Println(j) }()
 	}
+	time.Sleep(1000 * time.Millisecond)
+	fmt.Println("mieux")
+	// Bonne manière
+	for j := 1; j < 10; j++ {
+		z := j
+		go func(n int) { fmt.Println(n) }(z)
+	}
+
 	/*
 		for j := 1; j < 5; j++ {
 			z := j
