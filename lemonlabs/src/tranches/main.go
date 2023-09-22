@@ -29,7 +29,8 @@ func main() {
 	fmt.Println("lettres", lettres, "capacité:", cap(lettres), "taille:", len(lettres))
 	sub1 := lettres[:2]
 	sub2 := sub1[:]
-	fmt.Println("sub1", sub1, "capacité:", cap(sub1), "taille:", len(sub1), &sub1)
+	fmt.Println("sub1", sub1, "capacité:", cap(sub1), "taille:", len(sub1))
+	fmt.Printf("%p sub1\n", &sub1)
 	fmt.Printf("Adresse de la variable sub1: %p\n", &sub1)
 	fmt.Println("sub2", sub2, "capacité:", cap(sub2), "taille:", len(sub2), &sub2)
 	fmt.Printf("Adresse de la variable sub1: %p\n", &sub2)
