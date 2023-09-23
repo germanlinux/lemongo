@@ -19,9 +19,10 @@ func main() {
 	tranche_a[0] = 3
 	tranche_a[1] = 2
 	fmt.Println("tranche_a", tranche_a, "capacité:", cap(tranche_a), "taille:", len(tranche_a))
-	tranche_b := tranche_a[:]
+	tranche_b := tranche_a[1:3]
 	fmt.Println("tranche_b", tranche_b, "capacité:", cap(tranche_b), "taille:", len(tranche_b))
-	tranche_a = append(tranche_a, 23)
+	tranche_b[0] = 42
+	//tranche_a = append(tranche_a, 23)
 	fmt.Println("tranche_a", tranche_a, "capacité:", cap(tranche_a), "taille:", len(tranche_a))
 	fmt.Println("tranche_b", tranche_b, "capacité:", cap(tranche_b), "taille:", len(tranche_b))
 	lettres := []string{"etoile", "des", "neiges"}
