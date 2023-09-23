@@ -15,7 +15,7 @@ func main() {
 	}
 	fmt.Println("eric", string(d))
 
-	tranche_a := make([]int, 2, 3)
+	tranche_a := make([]int, 3, 6)
 	tranche_a[0] = 3
 	tranche_a[1] = 2
 	fmt.Println("tranche_a", tranche_a, "capacité:", cap(tranche_a), "taille:", len(tranche_a))
