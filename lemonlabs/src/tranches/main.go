@@ -25,6 +25,9 @@ func main() {
 	//tranche_a = append(tranche_a, 23)
 	fmt.Println("tranche_a", tranche_a, "capacité:", cap(tranche_a), "taille:", len(tranche_a))
 	fmt.Println("tranche_b", tranche_b, "capacité:", cap(tranche_b), "taille:", len(tranche_b))
+	fmt.Printf("%p a\n", &tranche_a)
+	fmt.Printf("%p b\n", &tranche_b)
+
 	lettres := []string{"etoile", "des", "neiges"}
 	fmt.Printf("Adresse de la variable lettre: %p\n", &lettres)
 	fmt.Println("lettres", lettres, "capacité:", cap(lettres), "taille:", len(lettres))
