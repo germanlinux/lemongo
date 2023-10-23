@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"strings"
 )
 
 func main() {
 	r := strings.NewReader("bonjour suite")
-	d, err := ioutil.ReadAll(r)
+	d, err := io.ReadAll(r)
 	if err != nil {
 		fmt.Println(("erreur"))
 		return
