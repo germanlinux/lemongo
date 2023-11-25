@@ -7,7 +7,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
-	"lemonlabs/src/synchro/util"
+	"lemonlabs/src/utils/util"
 	"log"
 	"os"
 	"path/filepath"
