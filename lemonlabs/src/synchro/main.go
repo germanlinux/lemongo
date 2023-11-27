@@ -13,16 +13,16 @@ import (
 	"time"
 )
 
-
 const backend string = "pro"
 
 type records struct {
-	path string
-	name string 
-	hash string
-	date string
+	path    string
+	name    string
+	hash    string
+	date    string
 	backend string
 }
+
 func storage() (state string) {
 	const file string = "./synchro.db"
 	//fmt.Println(create)
@@ -59,6 +59,7 @@ func main() {
 	repo := *repoFlag
 	proof := *nFlag
 	madate := time.Now()
+	proof = proof + 1
 	smadate := madate.Format("02-01-2006")
 	base := util.LastPath(directory)
 	var trecords []records
@@ -69,7 +70,7 @@ func main() {
 			if err != nil {
 				return err
 			}
-//			fmt.Println("ch:", path)
+			//			fmt.Println("ch:", path)
 			if !info.IsDir() {
 				ressource, errfile = os.Open(path)
 				if errfile != nil {
@@ -78,13 +79,15 @@ func main() {
 				sp, sf := util.ParsePath(path, base)
 				//fmt.Println(sp, sf)
 				//fmt.Printf("%v => %v\n", path, get_hash(ressource))
-				trecords = append(trecords,records { sp,sf, get_hash(ressource),smadate, repo} )
-				
+				trecords = append(trecords, records{sp, sf, get_hash(ressource), smadate, repo})
+
+				return nil
+			}
+			if err != nil {
+				log.Println(err)
+			}
 			return nil
-		}
-	if err != nil {
-		log.Println(err)
-	}
-}
+		})
+	fmt.Println(err)
 	fmt.Println(trecords)
-}	
+}
