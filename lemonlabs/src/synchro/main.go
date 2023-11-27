@@ -2,7 +2,6 @@ package main
 
 import (
 	"crypto/sha256"
-	"database/sql"
 	"encoding/hex"
 	"flag"
 	"fmt"
@@ -11,32 +10,25 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-
-	_ "github.com/mattn/go-sqlite3"
+	"time"
 )
 
-const create string = `
-  CREATE TABLE IF NOT EXISTS fingerprint (
-  path TEXT ,
-  name  TEXT,
-  hash TEXT, 
-  date TEXT,
-  backend TEXT ,
-  PRIMARY KEY (path, name)
-   );`
+
 const backend string = "pro"
 
+type records struct {
+	path string
+	name string 
+	hash string
+	date string
+	backend string
+}
 func storage() (state string) {
 	const file string = "./synchro.db"
-	db, err := sql.Open("sqlite3", file)
-	if err != nil {
-		fmt.Printf("err %v\n", err)
-		panic("stop")
-	}
-	fmt.Println(create)
-	if _, err := db.Exec(create); err != nil {
-		return "error create"
-	}
+	//fmt.Println(create)
+	//if _, err := db.Exec(create); err != nil {
+	//	return "error create"
+	//}
 	return "Ok"
 }
 
@@ -62,17 +54,14 @@ func main() {
 	var pathFlag = flag.String("path", "./", "Chemin complet du repertoire")
 	var repoFlag = flag.String("repo", "pro", "Etiquette de l'instance")
 	flag.Parse()
-	//flag.Usage()
+	flag.Usage()
 	directory := *pathFlag
 	repo := *repoFlag
 	proof := *nFlag
-	fmt.Println(repo, proof)
-	if len(os.Args) > 1 {
-		directory = os.Args[1]
-		// do something with command
-	}
+	madate := time.Now()
+	smadate := madate.Format("02-01-2006")
 	base := util.LastPath(directory)
-	fmt.Println("base:", base)
+	var trecords []records
 	err := filepath.Walk(directory,
 		func(path string, info os.FileInfo, err error) error {
 			var ressource io.Reader
@@ -80,21 +69,22 @@ func main() {
 			if err != nil {
 				return err
 			}
-			fmt.Println("ch:", path)
+//			fmt.Println("ch:", path)
 			if !info.IsDir() {
 				ressource, errfile = os.Open(path)
 				if errfile != nil {
 					log.Fatalln(errfile)
 				}
 				sp, sf := util.ParsePath(path, base)
-				fmt.Println(sp, sf)
-				fmt.Printf("%v => %v\n", path, get_hash(ressource))
-			}
+				//fmt.Println(sp, sf)
+				//fmt.Printf("%v => %v\n", path, get_hash(ressource))
+				trecords = append(trecords,records { sp,sf, get_hash(ressource),smadate, repo} )
+				
 			return nil
-		})
+		}
 	if err != nil {
 		log.Println(err)
 	}
-	fmt.Println(storage())
-
 }
+	fmt.Println(trecords)
+}	
