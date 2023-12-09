@@ -76,9 +76,10 @@ func main() {
 				if errfile != nil {
 					log.Fatalln(errfile)
 				}
-				sp, sf := util.ParsePath(path, base)
+				sp, sf, prof := util.ParsePath(path, base)
 				//fmt.Println(sp, sf)
 				//fmt.Printf("%v => %v\n", path, get_hash(ressource))
+				fmt.Println("PROF", prof)
 				trecords = append(trecords, records{sp, sf, get_hash(ressource), smadate, repo})
 
 				return nil

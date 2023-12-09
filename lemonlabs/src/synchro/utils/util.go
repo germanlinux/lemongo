@@ -21,12 +21,14 @@ func LastPath(chaine string) string {
 	} 
 	return parts[len(parts)-1]
 }
-func ParsePath(chaine, base string) (string, string) {
+func ParsePath(chaine, base string) (string, string, int) {
 	dir, file := filepath.Split(chaine)
+	prof := 0
 	//fmt.Printf("on mac  %v, %v\n", dir, file)
 	if dir == "" {
+		prof  = 1
 		dir = "." + string(os.PathSeparator)
-		return dir, file
+		return dir, file, prof
 	}
 	//fmt.Printf("on mac2 %v, %v, %v\n", dir, file, base)
 	parts := strings.Split(dir, base)
@@ -42,7 +44,7 @@ func ParsePath(chaine, base string) (string, string) {
 	} else {
 		pathf = dir
 	}
-
-	return pathf, file
+    prof = len(parts)
+	return pathf, file, prof
 
 }
