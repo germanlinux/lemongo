@@ -9,9 +9,9 @@ import (
 
 var Inp = `"Sample Entry #2","Michael321","12345","https://keepass.info/help/kb/testform.html",""
 "pgadmin","german","german","",""
-"microsoft","germanlinux@yahoo.fr","Flora2103","",""
-"zvm","root","rootvmeg","10.37.246.13",""
-"collabra","eric.german@dgfip.finances.gouv.fr","Germanli","https://collabora.dgfip.finances.rie.gouv.fr/",""
+"microsoft","germanliXXX.fr","XXXXXXXXX","",""
+"zvm","root","rootvmeg","XXXXXXXXX",""
+"collabra","XXXXXX.fr","XXXXXX","https://collabora.dgfip.finances.rie.gouv.fr/",""
 `
 
 type Entry struct {
