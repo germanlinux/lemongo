@@ -18,11 +18,9 @@ import (
 //"Account","Login Name","Password","Web Site","Comments"
 
 type Entry struct {
-	Name     string `csv:"Account"`
-	User     string `csv:"Login Name"`
-	Password string `csv:"Password"`
-	Url      string `csv:"Web site"`
-	Comment  string `csv:"Comments"`
+	Name string
+	User string
+	Etat int
 }
 
 func main() {
