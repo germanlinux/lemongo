@@ -18,39 +18,54 @@ import (
 //"Account","Login Name","Password","Web Site","Comments"
 
 type Entry struct {
-	Name string
-	User string
-	Etat int
+	Name     string
+	User     string
+	Password string
+	Etat     int
+}
+type Entries struct {
+	File     string
+	Mentries map[string]*Entry
 }
 
-func main() {
-	//r := strings.NewReader(Inp)
-	f, err := os.Open("filecsv.csv")
+func lire_fichier(nom string) Entries {
+	filename := nom
+	f, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
 
 	}
 	defer f.Close()
-
-	// read csv values using csv.Reader
-	//csvReader := csv.NewReader(f)
-	//data, err := csvReader.ReadAll()
 	filescanner := bufio.NewScanner(f)
 	filescanner.Split(bufio.ScanLines)
 	var filelines []string
 	for filescanner.Scan() {
 		filelines = append(filelines, filescanner.Text())
 	}
-	entree := make([]string, 0, 0)
+	mentries := make(map[string]*Entry)
 	for _, item := range filelines {
 		//fmt.Printf("%v\n", item)
 		tligne := strings.Split(item, ",")
 		//fmt.Printf("%v longueur: %v\n", item, len(tligne))
 		if len(tligne) > 4 {
-			entree = append(entree, item)
+			mentries[tligne[0]] = &Entry{tligne[0], tligne[1], tligne[2], 0}
 		}
 	}
-	for _, lig := range entree {
-		fmt.Printf("%v\n", lig)
+	return Entries{filename, mentries}
+
+}
+func main() {
+	//r := strings.NewReader(Inp)
+	argslen := len(os.Args)
+	var filename string
+	if argslen > 1 {
+		filename = os.Args[1]
+	} else {
+		os.Exit(1)
+	}
+	tmp := lire_fichier(filename)
+	//fmt.Printf("%v", tmp.Mentries)
+	for cle, val := range tmp.Mentries {
+		fmt.Printf("%v  -  %v\n", cle, val)
 	}
 }
