@@ -57,15 +57,22 @@ func lire_fichier(nom string) Entries {
 func main() {
 	//r := strings.NewReader(Inp)
 	argslen := len(os.Args)
-	var filename string
-	if argslen > 1 {
-		filename = os.Args[1]
+	var filenameUn, filenameDeux string
+	if argslen > 2 {
+		filenameUn = os.Args[1]
+		filenameDeux = os.Args[2]
 	} else {
 		os.Exit(1)
 	}
-	tmp := lire_fichier(filename)
+	tmpUn := lire_fichier(filenameUn)
 	//fmt.Printf("%v", tmp.Mentries)
-	for cle, val := range tmp.Mentries {
+	for cle, val := range tmpUn.Mentries {
 		fmt.Printf("%v  -  %v\n", cle, val)
 	}
+	tmpDeux := lire_fichier(filenameDeux)
+	//fmt.Printf("%v", tmp.Mentries)
+	for cle, val := range tmpDeux.Mentries {
+		fmt.Printf("%v  -  %v\n", cle, val)
+	}
+
 }
