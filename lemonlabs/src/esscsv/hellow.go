@@ -54,6 +54,22 @@ func lire_fichier(nom string) Entries {
 	return Entries{filename, mentries}
 
 }
+
+func bilan(entrieUn, entrieDeux Entries) int {
+	//	fmt.Print(entrieDeux)
+	// faire defiler entree1
+	for cle, value := range entrieUn.Mentries {
+		if value.Etat == 0 {
+			if _, ok := entrieDeux.Mentries[cle]; ok {
+
+			} else {
+				fmt.Println("absent:", entrieDeux.File, cle)
+			}
+		}
+	}
+	return 0
+}
+
 func main() {
 	//r := strings.NewReader(Inp)
 	argslen := len(os.Args)
@@ -74,5 +90,6 @@ func main() {
 	for cle, val := range tmpDeux.Mentries {
 		fmt.Printf("%v  -  %v\n", cle, val)
 	}
-
+	toto := bilan(tmpUn, tmpDeux)
+	fmt.Println(toto)
 }
