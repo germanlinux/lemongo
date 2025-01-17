@@ -60,10 +60,14 @@ func bilan(entrieUn, entrieDeux Entries) int {
 	// faire defiler entree1
 	for cle, value := range entrieUn.Mentries {
 		if value.Etat == 0 {
-			if _, ok := entrieDeux.Mentries[cle]; ok {
-
+			if val2, ok := entrieDeux.Mentries[cle]; ok {
+				if (val2.Password != value.Password) or (val2.User != value.User) {
+					fmt.Printf("difference: %v , %v", value, val2)
+					Value.Etat = 2 					
+				} 
 			} else {
 				fmt.Println("absent:", entrieDeux.File, cle)
+				Value.Etat = 1
 			}
 		}
 	}
