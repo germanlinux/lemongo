@@ -54,16 +54,29 @@ func lire_fichier(nom string) Entries {
 	return Entries{filename, mentries}
 
 }
+func formatemax(lg int, n, m string) (string, string) {
 
+	ln := n
+	lm := m
+	ln = fmt.Sprintf("%-*s", lg, n)
+	lm = fmt.Sprintf("%-*s", lg, m)
+	return ln, lm
+}
 func bilan(entrieUn, entrieDeux Entries) int {
 	//	fmt.Print(entrieDeux)
 	// faire defiler entree1
+	//formatter les noms
+	longmax := len(entrieUn.File)
+	if len(entrieDeux.File) > longmax {
+		longmax = len(entrieDeux.File)
+	}
+	nom1, nom2 := formatemax(longmax, entrieUn.File, entrieDeux.File)
 	for cle, value := range entrieUn.Mentries {
 		if value.Etat == 0 {
 			if val2, ok := entrieDeux.Mentries[cle]; ok {
 				if (val2.Password != value.Password) || (val2.User != value.User) {
-					fmt.Printf("difference:%v - %v , %v\n", entrieUn.File, value)
-					fmt.Printf("----------:%v - %v , %v\n", entrieDeux.File, val2)
+					fmt.Printf("difference:%v - %v , %v, %v\n", nom1, value.Name, value.User, value.Password)
+					fmt.Printf("----------:%v - %v , %v, %v\n", nom2, val2.Name, val2.User, val2.Password)
 
 					value.Etat = 2
 				}
