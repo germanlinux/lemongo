@@ -62,7 +62,8 @@ func formatemax(lg int, n, m string) (string, string) {
 	lm = fmt.Sprintf("%-*s", lg, m)
 	return ln, lm
 }
-func bilan(entrieUn, entrieDeux Entries) int {
+func bilan(entrieUn, entrieDeux Entries) []string {
+	tab := make([]string, 0, 0)
 	//	fmt.Print(entrieDeux)
 	// faire defiler entree1
 	//formatter les noms
@@ -75,18 +76,21 @@ func bilan(entrieUn, entrieDeux Entries) int {
 		if value.Etat == 0 {
 			if val2, ok := entrieDeux.Mentries[cle]; ok {
 				if (val2.Password != value.Password) || (val2.User != value.User) {
-					fmt.Printf("difference:%v - %v , %v, %v\n", nom1, value.Name, value.User, value.Password)
-					fmt.Printf("----------:%v - %v , %v, %v\n", nom2, val2.Name, val2.User, val2.Password)
-
+					tmp := fmt.Sprintf("difference:%v - %v , %v, %v\n", nom1, value.Name, value.User, value.Password)
+					tab = append(tab, tmp)
+					tmp = fmt.Sprintf("----------:%v - %v , %v, %v\n", nom2, val2.Name, val2.User, val2.Password)
+					tab = append(tab, tmp)
+					val2.Etat = 2
 					value.Etat = 2
 				}
 			} else {
-				fmt.Println("absent:", entrieDeux.File, cle)
+				tmp := fmt.Sprintf("absent de %v:%v", entrieDeux.File, cle)
+				tab = append(tab, tmp)
 				value.Etat = 1
 			}
 		}
 	}
-	return 0
+	return tab
 }
 
 func main() {
@@ -101,14 +105,16 @@ func main() {
 	}
 	tmpUn := lire_fichier(filenameUn)
 	//fmt.Printf("%v", tmp.Mentries)
-	for cle, val := range tmpUn.Mentries {
-		fmt.Printf("%v  -  %v\n", cle, val)
-	}
+
 	tmpDeux := lire_fichier(filenameDeux)
 	//fmt.Printf("%v", tmp.Mentries)
-	for cle, val := range tmpDeux.Mentries {
-		fmt.Printf("%v  -  %v\n", cle, val)
+	res := bilan(tmpUn, tmpDeux)
+	for _, item := range res {
+		fmt.Printf("%v", item)
 	}
-	toto := bilan(tmpUn, tmpDeux)
-	fmt.Println(toto)
+	res = bilan(tmpDeux, tmpUn)
+	for _, item2 := range res {
+		fmt.Printf("%v", item2)
+	}
+
 }
