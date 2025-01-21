@@ -63,7 +63,7 @@ func formatemax(lg int, n, m string) (string, string) {
 	return ln, lm
 }
 func bilan(entrieUn, entrieDeux Entries) []string {
-	tab := make([]string, 0, 0)
+	tab := make([]string, 0)
 	//	fmt.Print(entrieDeux)
 	// faire defiler entree1
 	//formatter les noms
