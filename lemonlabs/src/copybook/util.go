@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"regexp"
 	"sort"
 	"strconv"
@@ -137,4 +138,11 @@ func calcul_lg(table *[]Variable) {
 // ajouter le voisin
 func voisin(table *[]Variable) {
 	//var change []Variable
+}
+func display(principal map[uuid.UUID][]uuid.UUID, dict map[uuid.UUID]string) {
+	for cle, val := range principal {
+		fmt.Println("cle", cle, dict[cle])
+		fmt.Println(val)
+	}
+
 }
