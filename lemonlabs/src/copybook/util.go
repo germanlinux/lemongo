@@ -138,6 +138,17 @@ func calcul_lg(table *[]Variable) {
 // ajouter le voisin
 func voisin(table *[]Variable) {
 	//var change []Variable
+	debut := 0
+	fin := 0
+	lg := 0
+	for -,item := range table {
+		if item.typeof == "GRP" || item.typeof == "COND" {
+			lg = 0
+		} else {
+			lg = item.lg_externe
+		}	
+	}
+
 }
 func display(principal map[uuid.UUID][]uuid.UUID, dict map[uuid.UUID]string) {
 	for cle, val := range principal {
