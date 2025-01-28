@@ -131,11 +131,12 @@ func main() {
 		fmt.Printf("%v;%v;%v;%v\n", cpx, item.level, item.name, item.lg_externe)
 	}
 	fmt.Println("------------")
-	a, b := init_grp((data))
+	a, b := init_grp(data)
 
 	fmt.Println(b)
 	fmt.Println("----------")
 	fmt.Println(a)
 	display(a, b)
+	voisin(data)
 
 }
