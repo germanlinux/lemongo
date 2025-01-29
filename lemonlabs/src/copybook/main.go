@@ -137,6 +137,6 @@ func main() {
 	fmt.Println("----------")
 	fmt.Println(a)
 	display(a, b)
-	voisin(data)
+	voisin(&data)
 
 }

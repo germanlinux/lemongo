@@ -136,12 +136,18 @@ func calcul_lg(table *[]Variable) {
 }
 
 // ajouter le voisin
-func voisin(table []Variable) {
+func voisin(table *[]Variable) {
 	//var change []Variable
+	//trier par rang d apparition
+	tmp_change := *table
+	sort.Slice(tmp_change, func(i, j int) bool {
+		return tmp_change[i].rank < tmp_change[j].rank
+	})
+
 	debut := 0
 	fin := 0
 	lg := 0
-	for _, item := range table {
+	for _, item := range tmp_change {
 		if item.typeof == "GRP" || item.typeof == "COND" {
 			lg = 0
 		} else {
