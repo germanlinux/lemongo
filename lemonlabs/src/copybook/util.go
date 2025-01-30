@@ -144,7 +144,7 @@ func voisin(table *[]Variable) {
 		return tmp_change[i].rank < tmp_change[j].rank
 	})
 
-	debut := 0
+	debut := 1
 	fin := 0
 	lg := 0
 	for _, item := range tmp_change {
@@ -152,10 +152,11 @@ func voisin(table *[]Variable) {
 			lg = 0
 		} else {
 			lg = item.lg_externe
+			fin = debut + lg - 1
+			fmt.Println(item.name, debut, fin)
+			debut = fin + 1
 		}
-		fin = debut + lg
-		fmt.Println(item.name, debut, fin)
-		debut = fin
+
 	}
 
 }
