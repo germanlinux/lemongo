@@ -147,6 +147,7 @@ func voisin(table *[]Variable) {
 	debut := 1
 	fin := 0
 	lg := 0
+
 	for _, item := range tmp_change {
 		if item.typeof == "GRP" || item.typeof == "COND" {
 			lg = 0
@@ -155,6 +156,7 @@ func voisin(table *[]Variable) {
 			fin = debut + lg - 1
 			fmt.Println(item.name, debut, fin)
 			debut = fin + 1
+
 		}
 
 	}

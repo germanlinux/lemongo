@@ -60,7 +60,7 @@ func EncodeBase64(chaine string) {
 
 func parseData(tlignes []string) []Variable {
 	var table_niveau []Parent
-	var result []Variable
+	var result []*Variable
 	var typeof string
 	nivparent := Parent{niveau: 0}
 	table_niveau = append(table_niveau, nivparent)
@@ -91,7 +91,7 @@ func parseData(tlignes []string) []Variable {
 			tmpv.lg_entier = lg1
 			tmpv.lg_decimal = lg2
 		}
-		result = append(result, tmpv)
+		result = append(result, &tmpv)
 
 		//EncodeBase64("encode moi vite")
 		//	    fmt.Println(table_niveau)
