@@ -58,7 +58,7 @@ func EncodeBase64(chaine string) {
 }
 */
 
-func parseData(tlignes []string) []Variable {
+func parseData(tlignes []string) []*Variable {
 	var table_niveau []Parent
 	var result []*Variable
 	var typeof string
@@ -102,8 +102,8 @@ func parseData(tlignes []string) []Variable {
 	return result
 }
 
-func recherche_parent(pere uuid.UUID, table *[]Variable) (int, error) {
-	for cp, item := range *table {
+func recherche_parent(pere uuid.UUID, table []*Variable) (int, error) {
+	for cp, item := range table {
 		if item.uuid == pere {
 			return cp, nil
 		}
@@ -125,7 +125,7 @@ func main() {
 		fmt.Println(item.name, item.typeof, item.lg_externe, item.uuid, item.level, item.parentUuid)
 
 	}
-	calcul_lg(&data)
+	calcul_lg(data)
 	fmt.Println("------------")
 	for cpx, item := range data {
 		fmt.Printf("%v;%v;%v;%v\n", cpx, item.level, item.name, item.lg_externe)
@@ -137,6 +137,6 @@ func main() {
 	fmt.Println("----------")
 	fmt.Println(a)
 	display(a, b)
-	voisin(&data)
+	voisin(data)
 
 }

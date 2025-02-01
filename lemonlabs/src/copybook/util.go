@@ -89,7 +89,7 @@ func verif_niveau(table []Parent) uuid.UUID {
 }
 
 // findAllson : retourne la liste des variables filles d'une variable de type groupe
-func findAllson(item uuid.UUID, table []Variable) []uuid.UUID {
+func findAllson(item uuid.UUID, table []*Variable) []uuid.UUID {
 	var result []uuid.UUID
 	for _, data := range table {
 		if data.parentUuid == item {
@@ -100,7 +100,7 @@ func findAllson(item uuid.UUID, table []Variable) []uuid.UUID {
 }
 
 // init_grp : construit l'arbre hierarchique des données groupe et d'un dictionnaire uuid/nom
-func init_grp(table []Variable) (map[uuid.UUID][]uuid.UUID, map[uuid.UUID]string) {
+func init_grp(table []*Variable) (map[uuid.UUID][]uuid.UUID, map[uuid.UUID]string) {
 
 	dictA := make(map[uuid.UUID]string, 0)
 	dictGRP := make(map[uuid.UUID][]uuid.UUID, 0)
@@ -118,11 +118,11 @@ func init_grp(table []Variable) (map[uuid.UUID][]uuid.UUID, map[uuid.UUID]string
 
 // func calcul_lg : calcule les longueurs externe des zones groupes
 // on parcours une la table de variable triée par niveau (decroissant)  pour cumuler les zones simples et on remonte dans la hierarchie.
-func calcul_lg(table *[]Variable) {
+func calcul_lg(table []*Variable) {
 	//var change []Variable
 
 	//trier par niveau
-	tmp_change := *table
+	tmp_change := table
 	sort.Slice(tmp_change, func(i, j int) bool {
 		return tmp_change[i].level > tmp_change[j].level
 	})
@@ -130,16 +130,16 @@ func calcul_lg(table *[]Variable) {
 	for _, item := range tmp_change {
 		index, err := recherche_parent(item.parentUuid, table)
 		if err == nil {
-			(*table)[index].lg_externe += item.lg_externe
+			table[index].lg_externe += item.lg_externe
 		}
 	}
 }
 
 // ajouter le voisin
-func voisin(table *[]Variable) {
+func voisin(table []*Variable) {
 	//var change []Variable
 	//trier par rang d apparition
-	tmp_change := *table
+	tmp_change := table
 	sort.Slice(tmp_change, func(i, j int) bool {
 		return tmp_change[i].rank < tmp_change[j].rank
 	})
