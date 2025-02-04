@@ -154,7 +154,7 @@ func voisin(table []*Variable) {
 		} else {
 			lg = item.lg_externe
 			fin = debut + lg - 1
-			fmt.Println(item.name, debut, fin)
+
 			debut = fin + 1
 			if precedent > 0 {
 				tmp_change[precedent].sibling = item.uuid
